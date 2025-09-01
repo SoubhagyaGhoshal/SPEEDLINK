@@ -1,0 +1,266 @@
+/* ===== SPEEDLINK Dark + Orange GTPL-Style Wizard ===== */
+
+:root{
+  --primary-color:#ff6600;
+  --primary-dark:#e65c00;
+  --text-primary:#ffffff;
+  --text-secondary:#cfcfcf;
+
+  --page-bg:#0b0f14;
+  --card:#1a1d21;
+  --card-2:#14171b;
+  --border:#2a2f34;
+
+  --radius-md:12px;
+  --radius-lg:16px;
+
+  --shadow-sm:0 2px 10px rgba(0,0,0,.35);
+  --shadow-md:0 6px 22px rgba(0,0,0,.45);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.6);
+}
+
+.bk-page{
+  background:var(--page-bg);
+  min-height:100vh;
+  padding:24px 0 48px;
+}
+
+/* ===== Dark Front/Hero for Buy Connection ===== */
+.bk-hero{
+  background:
+    radial-gradient(1200px 450px at 20% -10%, rgba(255,102,0,.15), transparent 60%),
+    linear-gradient(180deg, rgba(20,22,26,.95), rgba(20,22,26,.9));
+  border-bottom:1px solid var(--border);
+  padding:32px 0 28px;
+}
+.bk-hero-inner{
+  max-width:1180px; margin:0 auto; padding:0 16px;
+}
+.bk-back{
+  background:transparent;
+  color:#cfcfcf;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:.5rem .8rem;
+  font-weight:800;
+  cursor:pointer;
+  transition:all .2s ease;
+  margin-bottom:12px;
+}
+.bk-back:hover{
+  border-color:#3a3f45;
+  color:#fff;
+  transform:translateY(-1px);
+}
+.bk-hero-title{
+  color:var(--text-primary);
+  margin:6px 0 6px;
+  font-size:2rem;
+  font-weight:900;
+}
+@media (min-width: 720px){
+  .bk-hero-title{ font-size:2.4rem; }
+}
+.bk-hero-sub{
+  color:var(--text-secondary);
+  margin:0 0 14px;
+  font-size:1.05rem;
+}
+.bk-note{
+  display:flex; align-items:flex-start; gap:6px;
+  color:#eaeaea;
+  background:var(--card-2);
+  border:1px solid var(--border);
+  border-left:3px solid var(--primary-color);
+  border-radius:12px;
+  padding:10px 12px;
+  box-shadow:var(--shadow-sm);
+}
+.bk-note strong{
+  color:#fff;
+  font-weight:900;
+}
+.bk-note b{
+  color:#ffd7bd;
+  font-weight:900;
+}
+
+/* ===== Layout ===== */
+.bk-container{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 16px;
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:24px;
+}
+@media (max-width: 980px){
+  .bk-container{ grid-template-columns:1fr; }
+}
+
+.bk-summary{ position:sticky; top:16px; height:fit-content; }
+
+/* ===== Stepper ===== */
+.bk-stepper{
+  display:flex; align-items:center;
+  gap:12px; margin-bottom:16px; overflow:auto; padding-bottom:4px;
+}
+.bk-step{
+  display:flex; align-items:center; gap:8px; color:#a1a1a1;
+  font-weight:700; position:relative;
+}
+.bk-step .bk-step-icon{
+  width:34px; height:34px; display:grid; place-items:center;
+  background:#0e1114; border:1px solid var(--border); border-radius:999px;
+}
+.bk-step.active .bk-step-icon{ border-color:var(--primary-color); box-shadow:0 0 0 3px rgba(255,102,0,.15); }
+.bk-step.done .bk-step-icon{ background:rgba(255,102,0,.15); border-color:var(--primary-color); color:#fff; }
+.bk-step-title{ white-space:nowrap; font-size:.95rem; }
+.bk-step-line{
+  width:28px; height:2px; background:var(--border); display:inline-block; margin-left:8px;
+}
+
+/* ===== Panel ===== */
+.bk-panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+  padding:18px;
+}
+.bk-h2{
+  margin:6px 6px 16px; color:var(--text-primary);
+  font-size:1.4rem; font-weight:900;
+}
+
+/* ===== Service toggle ===== */
+.bk-service-toggle{
+  display:flex; gap:10px; margin:10px 6px 18px;
+}
+.toggle{
+  background:var(--card-2);
+  color:var(--text-secondary);
+  border:1px solid var(--border);
+  padding:.7rem 1rem; border-radius:999px; font-weight:800; cursor:pointer;
+  transition:.2s ease; display:flex; align-items:center; gap:8px;
+}
+.toggle:hover{ border-color:#3a3f45; }
+.toggle.active{ color:#fff; border-color:var(--primary-color); box-shadow:0 0 0 3px rgba(255,102,0,.15); }
+
+/* ===== Plans ===== */
+.bk-plans{
+  display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.plan-card{
+  text-align:left; padding:14px; background:var(--card-2);
+  border:1px solid var(--border); border-radius:14px; cursor:pointer;
+  transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+  position:relative; color:var(--text-primary);
+}
+.plan-card:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.plan-card.selected{ border-color:var(--primary-color); box-shadow:0 0 0 3px rgba(255,102,0,.12); }
+.plan-card .badge{
+  position:absolute; top:10px; right:10px; background:var(--primary-color); color:#0b1727;
+  font-weight:900; font-size:.7rem; padding:.25rem .5rem; border-radius:999px;
+}
+.plan-title{ font-weight:900; margin-top:2px; }
+.plan-speed{ color:#ffd7bd; margin:2px 0 4px; }
+.plan-price{ font-size:1.25rem; font-weight:900; }
+.plan-price small{ font-size:.9rem; color:#c8c8c8; font-weight:700; }
+.plan-desc{ color:var(--text-secondary); margin:6px 0 6px; }
+.plan-features{ margin:0; padding-left:16px; color:#bdbdbd; }
+
+/* ===== Inputs: white fields, black text + floating labels ===== */
+
+/* grid (unchanged) */
+.bk-grid{ display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+@media (max-width:680px){ .bk-grid{ grid-template-columns:1fr; } }
+.field{ position:relative; display:flex; flex-direction:column; }
+.field.col-2{ grid-column:span 2; }
+
+/* wrapper to enable floating label */
+.fl{ position:relative; }
+
+/* white inputs with dark text */
+.field input,
+.field select{
+  background:#ffffff;            /* white */
+  color:#111111;                 /* ← black/dark text */
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1.05rem 1rem .85rem;   /* extra top padding for label space */
+  font-size:1rem;
+  outline:none;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+/* placeholder should exist but be invisible for floating trick */
+.field input::placeholder{
+  color:transparent;             /* hide placeholder text */
+}
+
+/* visible helper placeholder styles for non-floating fallback (not used here) */
+.field select option[disabled]{ color:#9ca3af; }
+
+/* focus ring */
+.field input:focus,
+.field select:focus{
+  border-color:var(--primary-color);
+  box-shadow:0 0 0 3px rgba(255,102,0,.18);
+}
+
+/* floating label itself */
+.fl .fl-label{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#6b7280;                 /* muted before float */
+  pointer-events:none;
+  font-weight:600;
+  background:#ffffff;            /* sits on white input */
+  padding:0 .3rem;
+  transition:all .16s ease;
+  border-radius:6px;
+}
+
+/* when focused or has content -> shrink & lift the label */
+.fl input:focus + .fl-label,
+.fl input:not(:placeholder-shown) + .fl-label{
+  top:6px;
+  transform:none;
+  font-size:.75rem;
+  color:var(--primary-color);
+}
+
+/* SELECT doesn’t support :placeholder-shown → use data attr */
+.fl select + .fl-label{
+  top:50%;
+  transform:translateY(-50%);
+  background:#ffffff;
+}
+.fl select:focus + .fl-label,
+.fl select[data-has-value="true"] + .fl-label{
+  top:6px;
+  transform:none;
+  font-size:.75rem;
+  color:var(--primary-color);
+}
+
+/* read-only fields: still white w/ dark text */
+.field input[readonly]{
+  background:#f7f7f7;
+  color:#111111;
+}
+
+/* labels above groups (section titles) */
+.field > label:not(.fl-label){
+  color:#ff6600;
+  font-weight:800;
+  margin:4px 2px 8px;
+  font-size:.95rem;
+}
+
+/* small hints */
+small.hint{ color:#9aa3ad; display:block; margin-top:6px; }
+
