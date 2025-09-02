@@ -189,7 +189,7 @@ const EnquiryForm = () => {
                 <ContactInfo>Speak directly with our customer service team</ContactInfo>
                 <CallButton href="tel:+916295932396">
                   <FaPhone />
-                  +91 98765 43210
+                  +91 62959 32396 
                 </CallButton>
               </ContactCard>
 
