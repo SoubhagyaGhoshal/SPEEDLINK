@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { FaTv, FaCheck, FaArrowRight, FaStar, FaVideo, FaCircle } from 'react-icons/fa';
+import { FaTv, FaCheck, FaArrowRight, FaStar, FaVideo, FaCircle, FaWhatsapp } from 'react-icons/fa';
 import styled from 'styled-components';
 
 /* ====================== THEME WRAPPER ====================== */
@@ -187,7 +187,7 @@ const ChannelItem = styled.div`
   svg { color: var(--primary-color); font-size: .7rem; }
 `;
 
-const BuyButton = styled.button`
+const BuyButton = styled.a`
   width: 100%;
   background: var(--primary-color);
   color: #fff;
@@ -200,11 +200,16 @@ const BuyButton = styled.button`
   cursor: pointer;
   transition: all .25s ease;
   box-shadow: 0 8px 24px rgba(255,102,0,.35);
+  text-decoration: none;
+  display: block;
+  text-align: center;
 
   &:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: 0 12px 30px rgba(255,102,0,.5);
+    color: #fff;
+    text-decoration: none;
   }
 `;
 
@@ -391,15 +396,9 @@ const CableTV = () => {
   const filteredPlans = plans.filter(plan => {
     if (activeFilter === 'all') return true;
     if (activeFilter === 'hd' && plan.quality === 'HD') return true;
-    if (activeFilter === 'sd' && plan.quality === 'SD') return true;
     if (activeFilter === 'regional' && plan.region === 'regional') return true;
     return false;
   });
-
-  // ✅ UPDATED: navigate to /buy-connection and pass the full plan in state
-  const handleBuyNow = (plan) => {
-    navigate('/buy-connection', { state: { plan } });
-  };
 
   const renderQualityIcon = (quality) => {
     switch (quality) {
@@ -488,10 +487,10 @@ const CableTV = () => {
                 </ChannelList>
 
                 <BuyButton
-                  aria-label={`Buy ${plan.name} for ₹${plan.price} per ${plan.duration}`}
-                  onClick={() => handleBuyNow(plan)}
+                  aria-label={`Call us for ${plan.name} plan - ₹${plan.price} per ${plan.duration}`}
+                  href="tel:+916295932396"
                 >
-                  Buy Now <FaArrowRight />
+                  Call Us <FaArrowRight />
                 </BuyButton>
               </PlanCard>
             ))}
@@ -517,6 +516,40 @@ const CableTV = () => {
           </FeaturesGrid>
         </Container>
       </FeaturesSection>
+
+      {/* Floating WhatsApp Button */}
+      <div style={{
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2rem',
+        zIndex: 1000,
+        background: '#25D366',
+        color: 'white',
+        borderRadius: '50%',
+        width: '60px',
+        height: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '1.5rem',
+        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        textDecoration: 'none'
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.transform = 'scale(1.1)';
+        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.transform = 'scale(1)';
+        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+      }}
+      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+      >
+        <FaWhatsapp />
+      </div>
+
     </Page>
   );
 };

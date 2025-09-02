@@ -14,56 +14,57 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
+  color: var(--text-primary, #ffffff);
+  background-color: var(--bg-primary, #000000);
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  color: var(--text-dark);
+  color: var(--text-primary, #ffffff);
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
 a {
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--primary-color, #153a71);
   transition: all 0.3s ease;
 }
 
 a:hover {
-  color: var(--primary-dark);
+  color: var(--secondary-color, #f59e0b);
 }
 
 :root {
-  /* Primary Colors */
-  --primary-color: #ff6600;
-  --primary-dark: #e65c00;
-  --primary-light: #ff8533;
+  /* Primary Colors - GTPL Style */
+  --primary-color: #153a71;
+  --primary-dark: #10294c;
+  --primary-light: #1e4a8a;
   
-  /* Secondary Colors */
-  --secondary-color: #003366;
-  --secondary-dark: #00264d;
-  --secondary-light: #1a4d80;
+  /* Secondary Colors - GTPL Style */
+  --secondary-color: #f59e0b;
+  --secondary-dark: #e68a00;
+  --secondary-light: #fbbf24;
   
   /* Accent Colors */
   --accent-color: #ffcc00;
   --accent-dark: #e6b800;
   --accent-light: #ffd633;
   
-  /* Text Colors */
+  /* Text Colors - Dark Theme */
   --text-dark: #333333;
-  --text-primary: #444444;
-  --text-secondary: #666666;
+  --text-primary: #ffffff;
+  --text-secondary: #cfcfcf;
   --text-light: #888888;
   --text-white: #ffffff;
   
-  /* Background Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
+  /* Background Colors - Dark Theme */
+  --bg-primary: #000000;
+  --bg-secondary: #111111;
   --bg-dark: #1a1a1a;
+  --card-bg: #111111;
   
   /* Utility Colors */
   --success: #28a745;
@@ -74,13 +75,13 @@ a:hover {
   --dark: #343a40;
   
   /* Border */
-  --border-color: #e0e0e0;
+  --border-color: #222222;
   --border-radius: 4px;
   
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.6);
   
   /* Spacing */
   --spacing-xs: 0.25rem;

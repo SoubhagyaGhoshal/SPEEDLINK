@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   FaHeadset, FaRobot, FaPhone, FaEnvelope, FaComments,
-  FaSearch, FaChevronDown, FaChevronUp, FaClock, FaMapMarkerAlt
+  FaSearch, FaChevronDown, FaChevronUp, FaClock, FaMapMarkerAlt, FaWhatsapp
 } from 'react-icons/fa';
 import styled from 'styled-components';
 
 /* ====================== THEME WRAPPER ====================== */
 const Page = styled.div`
-  /* SPEEDLINK dark + orange palette (fallbacks if not injected globally) */
+  /* SPEEDLINK dark + blue palette (fallbacks if not injected globally) */
   --primary-color: var(--primary-color, #ff6600);
   --primary-dark: var(--primary-dark, #e65c00);
   --text-primary: var(--text-primary, #ffffff);
@@ -529,6 +529,40 @@ const Support = () => {
           </FAQContainer>
         </Container>
       </FAQSection>
+
+      {/* Floating WhatsApp Button */}
+      <div style={{
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2rem',
+        zIndex: 1000,
+        background: '#25D366',
+        color: 'white',
+        borderRadius: '50%',
+        width: '60px',
+        height: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '1.5rem',
+        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        textDecoration: 'none'
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.transform = 'scale(1.1)';
+        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.transform = 'scale(1)';
+        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+      }}
+      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+      >
+        <FaWhatsapp />
+      </div>
+
     </Page>
   );
 };

@@ -1,0 +1,132 @@
+{
+  "short_name": "SPEEDLINK",
+  "name": "SPEEDLINK - High-Speed Broadband & Digital Cable TV",
+  "description": "Experience lightning-fast internet and crystal-clear digital TV with SPEEDLINK. 24/7 support, unlimited data, and competitive pricing.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ff6600",
+  "background_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "business",
+    "productivity",
+    "utilities",
+    "entertainment"
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "SPEEDLINK Homepage - Desktop View"
+    },
+    {
+      "src": "screenshot-narrow.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "SPEEDLINK Homepage - Mobile View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Broadband Plans",
+      "short_name": "Broadband",
+      "description": "View our high-speed broadband plans",
+      "url": "/broadband",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Cable TV",
+      "short_name": "TV",
+      "description": "Explore our digital cable TV packages",
+      "url": "/cable-tv",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with our support team",
+      "url": "/enquire",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+speedlink",
+      "url": "/%s"
+    }
+  ],
+  "file_handlers": [],
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "handle_links": "preferred",
+  "capture_links": "existing-client-navigate",
+  "permissions": [
+    "notifications",
+    "background-sync"
+  ],
+  "features": [
+    "Cross Platform",
+    "fast",
+    "simple",
+    "responsive"
+  ],
+  "developer": {
+    "name": "SPEEDLINK Team",
+    "url": "https://speedlink.com"
+  }
+}

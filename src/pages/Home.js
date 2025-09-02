@@ -10,6 +10,11 @@ import {
   FaChevronRight,
   FaGraduationCap,
   FaPhone,
+  FaGamepad,
+  FaUsers,
+  FaShieldAlt,
+  FaHeadset,
+  FaWhatsapp,
 } from "react-icons/fa";
 import styled, { createGlobalStyle } from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -31,33 +36,33 @@ const renderStars = (count = 5) => {
   return <div style={{ display: "inline-flex" }}>{items}</div>;
 };
 
-/* ---------------------- Swiper Orange Theme --------------------- */
+/* ---------------------- Swiper GTPL Theme --------------------- */
 const SwiperThemeStyles = createGlobalStyle`
   :root {
-    --swiper-theme-color: #ff6600;
-    --swiper-navigation-color: #ff6600;
-    --swiper-pagination-color: #ff6600;
+    --swiper-theme-color: #f59e0b;
+    --swiper-navigation-color: #f59e0b;
+    --swiper-pagination-color: #f59e0b;
   }
 
   .swiper-pagination-bullet {
     width: 10px; height: 10px;
-    background: rgba(255, 102, 0, 0.35);
+    background: rgba(245, 158, 11, 0.35);
     opacity: 1;
     transition: transform .2s ease, background .2s ease;
   }
   .swiper-pagination-bullet:hover { transform: scale(1.15); }
-  .swiper-pagination-bullet-active { background: #ff6600; transform: scale(1.25); }
+  .swiper-pagination-bullet-active { background: #f59e0b; transform: scale(1.25); }
 
   .swiper-button-next, .swiper-button-prev {
     width: 44px; height: 44px; border-radius: 999px;
-    background: rgba(255,102,0,.12);
+    background: rgba(245, 158, 11, .12);
     backdrop-filter: blur(2px);
     transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
   }
   .swiper-button-next:hover, .swiper-button-prev:hover {
-    background: rgba(255,102,0,.22);
+    background: rgba(245, 158, 11, .22);
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(255,102,0,.25);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, .25);
   }
   .swiper-button-next::after, .swiper-button-prev::after { font-size: 16px; font-weight: 900; }
 
@@ -69,17 +74,18 @@ const SwiperThemeStyles = createGlobalStyle`
 
 /* ----------------------------- Styles --------------------------- */
 const PageWrap = styled.div`
-  --primary-color: var(--primary-color, #ff6600);
-  --primary-dark: var(--primary-dark, #e65c00);
-  --text-primary: var(--text-primary, #ffffff);
-  --text-secondary: var(--text-secondary, #cfcfcf);
-  --card: var(--bg-card, #111111);
-  --border: var(--border, #222222);
-  --hover-glow: var(--hover-glow, rgba(255,102,0,.1));
+  --primary-color: #153a71;
+  --primary-dark: #10294c;
+  --secondary-color: #f59e0b;
+  --text-primary: #ffffff;
+  --text-secondary: #cfcfcf;
+  --card: #111111;
+  --border: #222222;
+  --hover-glow: rgba(21,58,113,.1);
   --success: #10b981;
-  --shadow-sm: var(--shadow-sm, 0 2px 10px rgba(0,0,0,.35));
-  --shadow-md: var(--shadow-md, 0 6px 22px rgba(0,0,0,.45));
-  --shadow-lg: var(--shadow-lg, 0 12px 40px rgba(0,0,0,.6));
+  --shadow-sm: 0 2px 10px rgba(0,0,0,.35);
+  --shadow-md: 0 6px 22px rgba(0,0,0,.45);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.6);
 `;
 
 /* ====== HERO SLIDER (changeable top photos) ====== */
@@ -137,28 +143,26 @@ const HeroInner = styled.div`
 
 const PrimaryButton = styled(Link)`
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--primary-color); color: #fff;
+  background: var(--secondary-color); color: #000;
   padding: .9rem 1.6rem; border-radius: 10px; font-weight: 800;
   letter-spacing: .2px; transition: all .25s ease;
-  box-shadow: 0 8px 24px rgba(255,102,0,.45);
+  box-shadow: 0 8px 24px rgba(245,158,11,.45);
   border: 1px solid rgba(255,255,255,.08);
-  &:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,102,0,.6); }
+  &:hover { background: #e68a00; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(245,158,11,.6); }
 `;
 
-/* 👇 NEW: Phone button shown on hero */
 const CallButton = styled.a`
   display: inline-flex; align-items: center; gap: 8px;
-  background: #0b1727; color: var(--primary-color);
+  background: var(--primary-color); color: #fff;
   padding: .75rem 1.25rem; border-radius: 10px; font-weight: 900;
   letter-spacing: .2px; transition: all .25s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  box-shadow: 0 8px 20px rgba(21,58,113,.35);
   border: 1px solid rgba(255,255,255,.08);
   text-decoration: none;
   &:hover{
     background: var(--primary-dark);
-    color:#fff;
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(255,102,0,.45);
+    box-shadow: 0 12px 30px rgba(21,58,113,.45);
   }
 `;
 
@@ -191,18 +195,18 @@ const ServiceCard = styled.div`
   border-radius: 12px; overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  &:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--primary-color); }
+  &:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--secondary-color); }
   .service-image { height: 180px; display: grid; place-items: center; font-size: 3rem; color: #fff; border-bottom: 1px solid var(--border); }
   .service-content {
     padding: 1.25rem 1.25rem 1.5rem;
-    h3 { color: var(--primary-color); margin-bottom: .4rem; }
+    h3 { color: var(--secondary-color); margin-bottom: .4rem; }
     p { color: var(--text-secondary); margin-bottom: 1rem; }
   }
 `;
 
 const TextLinkButton = styled(Link)`
   display: inline-flex; align-items: center; gap: 6px;
-  font-weight: 800; color: var(--primary-color); text-decoration: none;
+  font-weight: 800; color: var(--secondary-color); text-decoration: none;
   transition: transform .15s ease, opacity .15s ease;
   &:hover { opacity: .9; transform: translateX(2px); }
 `;
@@ -226,7 +230,7 @@ const FeatureCard = styled.div`
 `;
 
 const FeatureIcon = styled.div`
-  font-size: 2rem; margin-bottom: .5rem; color: var(--primary-color);
+  font-size: 2rem; margin-bottom: .5rem; color: var(--secondary-color);
 `;
 
 const FeatureTitle = styled.h4`
@@ -253,7 +257,7 @@ const PlanCard = styled(motion.div)`
   border-radius: 14px; box-shadow: var(--shadow-md);
   padding: 1.25rem 1.25rem 1.5rem; display: flex; flex-direction: column; gap: .6rem;
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-  &:hover { transform: translateY(-2px); border-color: var(--primary-color); box-shadow: var(--shadow-lg); }
+  &:hover { transform: translateY(-2px); border-color: var(--secondary-color); box-shadow: var(--shadow-lg); }
 `;
 
 const PlanHeader = styled.div`
@@ -272,19 +276,21 @@ const PlanList = styled.ul`
   li { margin: .2rem 0; }
 `;
 
-const PlanButton = styled(Link)`
+const PlanButton = styled.a`
   margin-top: auto; display: inline-flex; align-items: center; gap: 8px;
-  background: var(--primary-color); color: #fff; padding: .6rem 1rem;
+  background: var(--secondary-color); color: #000; padding: .6rem 1rem;
   border-radius: 10px; font-weight: 800; letter-spacing: .2px;
-  box-shadow: 0 6px 18px rgba(255,102,0,.25);
-  &:hover { background: var(--primary-dark); }
+  box-shadow: 0 6px 18px rgba(245,158,11,.25);
+  text-decoration: none;
+  cursor: pointer;
+  &:hover { background: #e68a00; color: #000; text-decoration: none; }
 `;
 
 /* Testimonials / CTA Section */
 const AnnouncementSection = styled.section`
   padding: 3rem 1rem;
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  color: #0b1727;
+  color: #ffffff;
 `;
 
 const AnnouncementContent = styled.div`
@@ -292,16 +298,16 @@ const AnnouncementContent = styled.div`
 `;
 
 const AnnouncementTitle = styled.h2`
-  font-size: 2rem; font-weight: 900; margin-bottom: .75rem; color: #0b1727;
+  font-size: 2rem; font-weight: 900; margin-bottom: .75rem; color: #ffffff;
 `;
 
 const AnnouncementText = styled.p`
-  font-size: 1.125rem; opacity: .95; margin-bottom: 1.25rem; color: #0b1727;
+  font-size: 1.125rem; opacity: .95; margin-bottom: 1.25rem; color: #ffffff;
 `;
 
 const CTAButton = styled(Link)`
   display: inline-flex; align-items: center; gap: 8px;
-  background: #0b1727; color: var(--primary-color);
+  background: var(--secondary-color); color: #000;
   padding: .75rem 1.25rem; border-radius: 999px; font-weight: 900;
   letter-spacing: .3px; transition: transform .2s ease, box-shadow .2s ease;
   box-shadow: var(--shadow-md);
@@ -314,22 +320,25 @@ const services = [
     title: "High-Speed Broadband",
     description: "Lightning-fast internet speeds for seamless streaming, gaming, and browsing.",
     icon: <FaWifi />,
-    bgColor: "linear-gradient(135deg, #ff7a1a 0%, #ff6600 100%)",
+    bgColor: "linear-gradient(135deg, #153a71 0%, #1e4a8a 100%)",
     link: "/broadband",
   },
   {
     title: "Digital Cable TV",
     description: "Crystal clear picture quality with 500+ channels and HD content.",
     icon: <FaTv />,
-    bgColor: "linear-gradient(135deg, #ffb81a 0%, #ff7a1a 100%)",
+    bgColor: "linear-gradient(135deg, #f59e0b 0%, #e68a00 100%)",
     link: "/cable-tv",
-  },
+  }
 ];
 
 const featureList = [
-  { icon: <FaStar />, title: "24/7 Support", description: "Round-the-clock customer support with AI chatbot and live agents" },
+  { icon: <FaHeadset />, title: "24/7 Support", description: "Round-the-clock customer support with AI chatbot and live agents" },
   { icon: <FaWifi />, title: "99.9% Uptime", description: "Reliable service with guaranteed uptime and quick issue resolution" },
   { icon: <FaPlay />, title: "Instant Activation", description: "Get your services activated within minutes of purchase" },
+  { icon: <FaShieldAlt />, title: "Secure & Safe", description: "Enterprise-grade security for all your digital needs" },
+  { icon: <FaUsers />, title: "Family Plans", description: "Special packages designed for families and multiple users" },
+  { icon: <FaStar />, title: "Premium Quality", description: "Best-in-class infrastructure and customer experience" },
 ];
 
 const testimonials = [
@@ -397,10 +406,9 @@ const Home = () => {
                     <h1>{s.title}</h1>
                     {s.subtitle && <p>{s.subtitle}</p>}
                     <div className="cta-group">
-                      <PrimaryButton to="#plans" onClick={scrollToPlans}>
-                        {s.cta || "View Plans"} <FaArrowRight />
+                      <PrimaryButton href="tel:+916295932396">
+                        Call Us <FaPhone />
                       </PrimaryButton>
-                      {/* Phone button in hero */}
                       <CallButton href="tel:+916295932396">
                         <FaPhone /> +91 62959 32396
                       </CallButton>
@@ -418,7 +426,7 @@ const Home = () => {
         <Container>
           <SectionHeader>
             <h2>Our Services</h2>
-            <p>Choose from our range of high-quality services designed for your entertainment needs</p>
+            <p>Choose from our range of high-quality services designed for your entertainment and connectivity needs</p>
           </SectionHeader>
 
           <ServicesGrid>
@@ -466,7 +474,7 @@ const Home = () => {
                 <li>Free installation in launch areas</li>
                 <li>24/7 priority chat support</li>
               </PlanList>
-              <PlanButton to="/broadband">Get This Plan <FaArrowRight /></PlanButton>
+              <PlanButton href="tel:+916295932396">Call Us <FaArrowRight /></PlanButton>
             </PlanCard>
 
             {/* Standard Home */}
@@ -477,7 +485,7 @@ const Home = () => {
               whileHover={{ scale: 1.015 }}
             >
               <PlanHeader>
-                <FaWifi style={{ color: "var(--primary-color)", fontSize: 22 }} />
+                <FaWifi style={{ color: "var(--secondary-color)", fontSize: 22 }} />
                 <h3>Standard Home</h3>
               </PlanHeader>
               <Price>₹399 <small>/ month</small></Price>
@@ -487,7 +495,7 @@ const Home = () => {
                 <li>Free router on annual plan</li>
                 <li>99.9% uptime SLA</li>
               </PlanList>
-              <PlanButton to="/broadband">Choose Plan <FaArrowRight /></PlanButton>
+              <PlanButton href="tel:+916295932396">Call Us <FaArrowRight /></PlanButton>
             </PlanCard>
 
             {/* Turbo */}
@@ -498,7 +506,7 @@ const Home = () => {
               whileHover={{ scale: 1.015 }}
             >
               <PlanHeader>
-                <FaWifi style={{ color: "#ffb81a", fontSize: 22 }} />
+                <FaWifi style={{ color: "#fbbf24", fontSize: 22 }} />
                 <h3>Turbo</h3>
               </PlanHeader>
               <Price>₹749 <small>/ month</small></Price>
@@ -508,7 +516,89 @@ const Home = () => {
                 <li>Low latency routing</li>
                 <li>Free installation</li>
               </PlanList>
-              <PlanButton to="/broadband">Go Turbo <FaArrowRight /></PlanButton>
+              <PlanButton href="tel:+916295932396">Call Us <FaArrowRight /></PlanButton>
+            </PlanCard>
+          </PlanGrid>
+        </Container>
+      </PlansSection>
+
+      {/* TV Plans Section */}
+      <PlansSection style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
+        <Container>
+          <SectionHeader>
+            <h2>TV Entertainment Plans</h2>
+            <p>Choose from our premium cable TV packages with regional content and HD channels</p>
+          </SectionHeader>
+
+          <PlanGrid>
+            {/* Basic TV */}
+            <PlanCard
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              whileHover={{ scale: 1.015 }}
+            >
+              <PlanHeader>
+                <FaTv style={{ color: "var(--secondary-color)", fontSize: 22 }} />
+                <h3>Basic TV</h3>
+              </PlanHeader>
+              <Price>₹200 <small>/ month</small></Price>
+              <div style={{ fontWeight: 800, color: "var(--text-primary)" }}>150+ Channels • SD Quality</div>
+              <PlanList>
+                <li>Essential entertainment channels</li>
+                <li>News, sports & movies</li>
+                <li>Free installation</li>
+                <li>24/7 customer support</li>
+              </PlanList>
+              <PlanButton href="tel:+916295932396">Call Us <FaArrowRight /></PlanButton>
+            </PlanCard>
+
+            {/* Bengali Prime */}
+            <PlanCard
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.05 }}
+              whileHover={{ scale: 1.015 }}
+            >
+              <PlanHeader>
+                <FaTv style={{ color: "#10b981", fontSize: 22 }} />
+                <h3>Bengali Prime</h3>
+                <span className="tag" style={{ background: "rgba(16,185,129,.12)", color: "#10b981" }}>MOST POPULAR</span>
+              </PlanHeader>
+              <Price>₹225 <small>/ month</small></Price>
+              <div style={{ fontWeight: 800, color: "var(--text-primary)" }}>300+ Channels • HD Quality</div>
+              <PlanList>
+                <li>Premium Bengali content & regional channels</li>
+                <li>HD & 4K streaming capabilities</li>
+                <li>Exclusive Bengali movies & shows</li>
+                <li>Priority Bengali customer support</li>
+                <li>Free HD set-top box</li>
+              </PlanList>
+              <PlanButton href="tel:+916295932396">Call Us <FaArrowRight /></PlanButton>
+            </PlanCard>
+
+            {/* Premium HD */}
+            <PlanCard
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.1 }}
+              whileHover={{ scale: 1.015 }}
+            >
+              <PlanHeader>
+                <FaTv style={{ color: "#8b5cf6", fontSize: 22 }} />
+                <h3>Premium HD</h3>
+                <span className="tag" style={{ background: "rgba(139,92,246,.12)", color: "#8b5cf6" }}>PREMIUM</span>
+              </PlanHeader>
+              <Price>₹799 <small>/ month</small></Price>
+              <div style={{ fontWeight: 800, color: "var(--text-primary)" }}>500+ Channels • Full HD</div>
+              <PlanList>
+                <li>All channels in HD quality</li>
+                <li>International content & movies</li>
+                <li>Premium sports packages</li>
+                <li>4K Ultra HD channels</li>
+                <li>Free premium set-top box</li>
+              </PlanList>
+              <PlanButton href="tel:+916295932396">Call Us <FaArrowRight /></PlanButton>
             </PlanCard>
           </PlanGrid>
         </Container>
@@ -538,7 +628,7 @@ const Home = () => {
         <Container>
           <SectionHeader>
             <h2>What Our Customers Say</h2>
-            <p>Don’t just take our word for it — hear from our satisfied customers</p>
+            <p>Don't just take our word for it — hear from our satisfied customers</p>
           </SectionHeader>
 
           <Swiper
@@ -564,9 +654,9 @@ const Home = () => {
                 >
                   <div style={{ marginBottom: ".75rem", minHeight: 24 }}>{renderStars(t.rating)}</div>
                   <p style={{ fontSize: "1.15rem", fontStyle: "italic", marginBottom: "1rem", color: "var(--text-secondary)" }}>
-                    “{t.quote}”
+                    "{t.quote}"
                   </p>
-                  <p style={{ fontWeight: 800, color: "var(--primary-color)" }}>— {t.author}</p>
+                  <p style={{ fontWeight: 800, color: "var(--secondary-color)" }}>— {t.author}</p>
                 </div>
               </SwiperSlide>
             ))}
@@ -575,19 +665,64 @@ const Home = () => {
       </Section>
 
       {/* Final CTA */}
-      <Section>
-        <Container style={{ textAlign: "center" }}>
-          <h2 style={{ color: "var(--text-primary)", marginBottom: ".75rem" }}>Ready to Get Started?</h2>
-          <p style={{ color: "var(--text-secondary)", marginBottom: "1.25rem" }}>
-            Join thousands of satisfied customers enjoying our premium services
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <PrimaryButton as="a" href="tel:+916295932396" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <FaPhone /> Call Now: +91 62959 32396
-            </PrimaryButton>
+      <Section style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
+        <Container>
+          <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem', color: 'var(--text-primary)' }}>
+              Ready to Get Started?
+            </h2>
+            <p style={{ fontSize: '1.25rem', opacity: 0.9, marginBottom: '2rem', color: 'var(--text-secondary)' }}>
+              Join thousands of satisfied customers enjoying lightning-fast internet and crystal-clear TV
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <CTAButton href="tel:+916295932396">
+                <FaPhone /> Call Us Now
+              </CTAButton>
+              <CTAButton 
+                href="https://wa.me/916295932396" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ background: '#25D366' }}
+              >
+                <FaWhatsapp /> WhatsApp
+              </CTAButton>
+            </div>
           </div>
         </Container>
       </Section>
+
+      {/* Floating WhatsApp Button */}
+      <div style={{
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2rem',
+        zIndex: 1000,
+        background: '#25D366',
+        color: 'white',
+        borderRadius: '50%',
+        width: '60px',
+        height: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '1.5rem',
+        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        textDecoration: 'none'
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.transform = 'scale(1.1)';
+        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.transform = 'scale(1)';
+        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+      }}
+      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+      >
+        <FaWhatsapp />
+      </div>
     </PageWrap>
   );
 };

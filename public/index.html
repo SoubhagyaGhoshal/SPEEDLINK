@@ -4,18 +4,90 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-                <meta
-              name="description"
-              content="SPEEDLINK - Your trusted provider for broadband and cable TV services. High-speed internet and entertainment solutions."
-            />
+    <meta name="theme-color" content="#ff6600" />
+    <meta name="color-scheme" content="dark light" />
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="SPEEDLINK - Your trusted provider for high-speed broadband and digital cable TV services. Experience lightning-fast internet, crystal-clear HD channels, and 24/7 support. Get connected today!" />
+    <meta name="keywords" content="broadband, internet, cable TV, high-speed internet, digital TV, streaming, gaming, SPEEDLINK, ISP, fiber internet" />
+    <meta name="author" content="SPEEDLINK" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://speedlink.com/" />
+    <meta property="og:title" content="SPEEDLINK - High-Speed Broadband & Digital Cable TV" />
+    <meta property="og:description" content="Experience lightning-fast internet and crystal-clear digital TV with SPEEDLINK. 24/7 support, unlimited data, and competitive pricing." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://speedlink.com/" />
+    <meta property="twitter:title" content="SPEEDLINK - High-Speed Broadband & Digital Cable TV" />
+    <meta property="twitter:description" content="Experience lightning-fast internet and crystal-clear digital TV with SPEEDLINK. 24/7 support, unlimited data, and competitive pricing." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+    
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Manifest and Icons -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-                <title>SPEEDLINK - Broadband | Cable TV</title>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SPEEDLINK",
+      "url": "https://speedlink.com",
+      "logo": "https://speedlink.com/logo.png",
+      "description": "High-speed broadband and digital cable TV services provider",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-62959-32396",
+        "contactType": "customer service",
+        "availableLanguage": "English, Hindi"
+      },
+              "sameAs": [
+          "https://facebook.com/speedlink",
+          "https://twitter.com/speedlink",
+          "https://instagram.com/speedlink"
+        ]
+    }
+    </script>
+    
+    <title>SPEEDLINK - High-Speed Broadband & Digital Cable TV Services</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="padding: 20px; text-align: center; background: #ff6600; color: white; font-family: Arial, sans-serif;">
+        <h2>JavaScript Required</h2>
+        <p>You need to enable JavaScript to run this app. Please enable JavaScript in your browser settings.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
+    
+    <!-- Performance monitoring -->
+    <script>
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', () => {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          if (perfData) {
+            console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+          }
+        });
+      }
+    </script>
   </body>
 </html> 

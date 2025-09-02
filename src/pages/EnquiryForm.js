@@ -1,304 +1,282 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaArrowLeft, FaUser, FaPhone, FaEnvelope, FaMapMarkerAlt, FaComments, FaCheck } from 'react-icons/fa';
+import React from 'react';
+import { FaArrowLeft, FaPhone, FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PageContainer = styled.div`
   min-height: 100vh;
-  background: var(--bg-secondary);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   padding: 2rem 0;
 `;
 
-const FormContainer = styled.div`
-  max-width: 600px;
+const ContactContainer = styled.div`
+  max-width: 800px;
   margin: 0 auto;
-  background: white;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 `;
 
-const FormHeader = styled.div`
-  background: var(--secondary-color);
+const ContactHeader = styled.div`
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
   color: white;
-  padding: 2rem;
+  padding: 3rem 2rem;
   text-align: center;
 `;
 
 const BackButton = styled(Link)`
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  color: white;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  transition: opacity 0.3s ease;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
 
   &:hover {
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
   }
 `;
 
-const FormTitle = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+const ContactTitle = styled.h1`
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #ffffff, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;
 
-const FormSubtitle = styled.p`
-  opacity: 0.9;
-  font-size: 1.1rem;
+const ContactSubtitle = styled.p`
+  opacity: 0.95;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
 `;
 
-const FormContent = styled.div`
-  padding: 3rem;
+const ContactContent = styled.div`
+  padding: 3rem 2rem;
 `;
 
-const FormGroup = styled.div`
-  margin-bottom: 1.5rem;
+const ContactGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
 `;
 
-const FormLabel = styled.label`
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  
-  &::after {
-    content: '*';
-    color: var(--secondary-color);
-    margin-left: 0.25rem;
-  }
-`;
-
-const FormInput = styled.input`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: 1rem;
+const ContactCard = styled.div`
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
   transition: all 0.3s ease;
   
-  &:focus {
-    outline: none;
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
     border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
   }
 `;
 
-const FormTextarea = styled.textarea`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  min-height: 120px;
-  resize: vertical;
-  transition: all 0.3s ease;
-  
-  &:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
-  }
-`;
-
-const FormSelect = styled.select`
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:focus {
-    outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
-  }
-`;
-
-const SubmitButton = styled.button`
-  width: 100%;
-  background: var(--secondary-color);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+const ContactIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--secondary-color), #e68a00);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+  color: white;
+`;
 
+const ContactMethod = styled.h3`
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+`;
+
+const ContactInfo = styled.p`
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+`;
+
+const CallButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, var(--secondary-color), #e68a00);
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  
   &:hover {
-    background: #d97706;
-    transform: translateY(-1px);
-  }
-
-  &:disabled {
-    background: var(--text-light);
-    cursor: not-allowed;
-    transform: none;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(245, 158, 11, 0.3);
+    color: white;
+    text-decoration: none;
   }
 `;
 
+const MessageSection = styled.div`
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+`;
+
+const MessageTitle = styled.h2`
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+`;
+
+const MessageText = styled.p`
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+`;
+
 const EnquiryForm = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    mobileNumber: '',
-    pincode: '',
-    service: '',
-    message: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      alert('Thank you! Your enquiry has been submitted successfully. We will get back to you within 24 hours.');
-      setIsSubmitting(false);
-    }, 2000);
-  };
-
-  const isFormValid = () => {
-    return Object.values(formData).every(value => value.trim() !== '');
-  };
-
   return (
     <PageContainer>
       <div className="container">
-        <FormContainer>
-          <FormHeader>
+        <ContactContainer>
+          <ContactHeader>
             <BackButton to="/broadband">
               <FaArrowLeft />
               Back to Broadband
             </BackButton>
-            <FormTitle>Enquire Now</FormTitle>
-            <FormSubtitle>Get in touch with us for any questions about our services</FormSubtitle>
-          </FormHeader>
+            <ContactTitle>Call Us Directly</ContactTitle>
+            <ContactSubtitle>Get in touch with us instantly for any questions about our services</ContactSubtitle>
+          </ContactHeader>
 
-          <FormContent>
-            <form onSubmit={handleSubmit}>
-              <FormGroup>
-                <FormLabel>Full Name</FormLabel>
-                <FormInput
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  placeholder="Enter your full name"
-                  required
-                />
-              </FormGroup>
+          <ContactContent>
+            <ContactGrid>
+              <ContactCard>
+                <ContactIcon>
+                  <FaPhone />
+                </ContactIcon>
+                <ContactMethod>Call Us</ContactMethod>
+                <ContactInfo>Speak directly with our customer service team</ContactInfo>
+                <CallButton href="tel:+919876543210">
+                  <FaPhone />
+                  +91 98765 43210
+                </CallButton>
+              </ContactCard>
 
-              <FormGroup>
-                <FormLabel>Email Address</FormLabel>
-                <FormInput
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="Enter your email address"
-                  required
-                />
-              </FormGroup>
+              <ContactCard>
+                <ContactIcon>
+                  <FaWhatsapp />
+                </ContactIcon>
+                <ContactMethod>WhatsApp</ContactMethod>
+                <ContactInfo>Send us a message on WhatsApp for quick responses</ContactInfo>
+                <CallButton href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+                  <FaWhatsapp />
+                  WhatsApp Us
+                </CallButton>
+              </ContactCard>
 
-              <FormGroup>
-                <FormLabel>Mobile Number</FormLabel>
-                <FormInput
-                  type="tel"
-                  name="mobileNumber"
-                  value={formData.mobileNumber}
-                  onChange={handleInputChange}
-                  placeholder="Enter 10-digit mobile number"
-                  maxLength="10"
-                  required
-                />
-              </FormGroup>
+              <ContactCard>
+                <ContactIcon>
+                  <FaEnvelope />
+                </ContactIcon>
+                <ContactMethod>Email</ContactMethod>
+                <ContactInfo>Send us an email for detailed inquiries</ContactInfo>
+                <CallButton href="mailto:support@speedlink.com">
+                  <FaEnvelope />
+                  support@speedlink.com
+                </CallButton>
+              </ContactCard>
 
-              <FormGroup>
-                <FormLabel>Pincode</FormLabel>
-                <FormInput
-                  type="text"
-                  name="pincode"
-                  value={formData.pincode}
-                  onChange={handleInputChange}
-                  placeholder="Enter 6-digit pincode"
-                  maxLength="6"
-                  required
-                />
-              </FormGroup>
+              <ContactCard>
+                <ContactIcon>
+                  <FaMapMarkerAlt />
+                </ContactIcon>
+                <ContactMethod>Visit Us</ContactMethod>
+                <ContactInfo>Visit our office for in-person assistance</ContactInfo>
+                <CallButton href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
+                  <FaMapMarkerAlt />
+                  View Location
+                </CallButton>
+              </ContactCard>
+            </ContactGrid>
 
-              <FormGroup>
-                <FormLabel>Service Interested In</FormLabel>
-                <FormSelect
-                  name="service"
-                  value={formData.service}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">Select Service</option>
-                  <option value="broadband">Broadband</option>
-                  <option value="cable-tv">Cable TV</option>
-                  <option value="both">Both Services</option>
-                  <option value="other">Other</option>
-                </FormSelect>
-              </FormGroup>
+            <MessageSection>
+              <MessageTitle>Why Call Us Directly?</MessageTitle>
+              <MessageText>
+                Get instant answers to your questions, personalized service recommendations, 
+                and immediate assistance with your broadband and cable TV needs. 
+                Our expert team is available to help you choose the perfect plan and 
+                get your connection set up quickly.
+              </MessageText>
+            </MessageSection>
+          </ContactContent>
+        </ContactContainer>
+      </div>
 
-              <FormGroup>
-                <FormLabel>Message</FormLabel>
-                <FormTextarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Tell us about your requirements or any questions you have..."
-                  required
-                />
-              </FormGroup>
-
-              <SubmitButton 
-                type="submit" 
-                disabled={!isFormValid() || isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <div style={{ width: '20px', height: '20px', border: '2px solid white', borderTop: '2px solid transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-                    Submitting...
-                  </>
-                ) : (
-                  <>
-                    <FaCheck />
-                    Submit Enquiry
-                  </>
-                )}
-              </SubmitButton>
-            </form>
-          </FormContent>
-        </FormContainer>
+      {/* Floating WhatsApp Button */}
+      <div style={{
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2rem',
+        zIndex: 1000,
+        background: '#25D366',
+        color: 'white',
+        borderRadius: '50%',
+        width: '60px',
+        height: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '1.5rem',
+        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        textDecoration: 'none'
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.transform = 'scale(1.1)';
+        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.transform = 'scale(1)';
+        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+      }}
+      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+      >
+        <FaWhatsapp />
       </div>
     </PageContainer>
   );
 };
 
-export default EnquiryForm; 
+export default EnquiryForm;

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { FaCheck, FaArrowRight, FaDownload, FaUpload, FaInfinity, FaStar } from 'react-icons/fa';
+import { FaCheck, FaArrowRight, FaDownload, FaUpload, FaInfinity, FaStar, FaWhatsapp } from 'react-icons/fa';
 import styled from 'styled-components';
 
 /* ====================== THEME WRAPPER ====================== */
@@ -201,7 +201,7 @@ const PlanFeature = styled.li`
   svg { color: var(--primary-color); flex-shrink: 0; }
 `;
 
-const BuyButton = styled.button`
+const BuyButton = styled.a`
   width: 100%;
   background: var(--primary-color);
   color: white;
@@ -214,11 +214,16 @@ const BuyButton = styled.button`
   cursor: pointer;
   transition: all .25s ease;
   box-shadow: 0 8px 24px rgba(255,102,0,.35);
+  text-decoration: none;
+  display: block;
+  text-align: center;
 
   &:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: 0 12px 30px rgba(255,102,0,.5);
+    color: white;
+    text-decoration: none;
   }
 `;
 
@@ -401,10 +406,6 @@ const Broadband = () => {
     { icon: <FaStar/>, title: 'Premium Support', description: '24/7 customer support with a dedicated technical team' }
   ];
 
-  const handleBuyNow = (plan) => {
-    alert(`Redirecting to payment for ${plan.name} plan - ₹${plan.price}/${plan.duration}`);
-  };
-
   const handleCheckCoverage = () => {
     if (pincode && /^\d{6}$/.test(pincode)) {
       alert(`Checking coverage for pincode: ${pincode}`);
@@ -463,8 +464,8 @@ const Broadband = () => {
                   ))}
                 </PlanFeatures>
 
-                <BuyButton onClick={() => handleBuyNow(plan)}>
-                  Buy Now <FaArrowRight />
+                <BuyButton href="tel:+916295932396">
+                  Call Us <FaArrowRight />
                 </BuyButton>
               </PlanCard>
             ))}
@@ -491,6 +492,39 @@ const Broadband = () => {
           </FeaturesGrid>
         </Container>
       </FeaturesSection>
+
+      {/* Floating WhatsApp Button */}
+      <div style={{
+        position: 'fixed',
+        bottom: '2rem',
+        right: '2rem',
+        zIndex: 1000,
+        background: '#25D366',
+        color: 'white',
+        borderRadius: '50%',
+        width: '60px',
+        height: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '1.5rem',
+        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        textDecoration: 'none'
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.transform = 'scale(1.1)';
+        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.transform = 'scale(1)';
+        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+      }}
+      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+      >
+        <FaWhatsapp />
+      </div>
 
     </Page>
   );
