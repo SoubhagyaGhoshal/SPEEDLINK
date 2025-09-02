@@ -187,7 +187,7 @@ const EnquiryForm = () => {
                 </ContactIcon>
                 <ContactMethod>Call Us</ContactMethod>
                 <ContactInfo>Speak directly with our customer service team</ContactInfo>
-                <CallButton href="tel:+919876543210">
+                <CallButton href="tel:+916295932396">
                   <FaPhone />
                   +91 98765 43210
                 </CallButton>
@@ -199,7 +199,7 @@ const EnquiryForm = () => {
                 </ContactIcon>
                 <ContactMethod>WhatsApp</ContactMethod>
                 <ContactInfo>Send us a message on WhatsApp for quick responses</ContactInfo>
-                <CallButton href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+                <CallButton href="https://wa.me/916295932396" target="_blank" rel="noopener noreferrer">
                   <FaWhatsapp />
                   WhatsApp Us
                 </CallButton>
