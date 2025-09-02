@@ -406,8 +406,8 @@ const Home = () => {
                     <h1>{s.title}</h1>
                     {s.subtitle && <p>{s.subtitle}</p>}
                     <div className="cta-group">
-                      <PrimaryButton href="tel:+916295932396">
-                        Call Us <FaPhone />
+                      <PrimaryButton onClick={scrollToPlans}>
+                        {s.cta} <FaChevronRight />
                       </PrimaryButton>
                       <CallButton href="tel:+916295932396">
                         <FaPhone /> +91 62959 32396
