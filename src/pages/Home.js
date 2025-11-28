@@ -15,6 +15,10 @@ import {
   FaShieldAlt,
   FaHeadset,
   FaWhatsapp,
+  FaCreditCard,
+  FaPlus,
+  FaArrowUp,
+  FaSearch
 } from "react-icons/fa";
 import styled, { createGlobalStyle } from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -74,18 +78,20 @@ const SwiperThemeStyles = createGlobalStyle`
 
 /* ----------------------------- Styles --------------------------- */
 const PageWrap = styled.div`
-  --primary-color: #153a71;
-  --primary-dark: #10294c;
-  --secondary-color: #f59e0b;
+  --primary-color: #0056b3;
+  --primary-dark: #004494;
+  --secondary-color: #ff9900;
   --text-primary: #ffffff;
   --text-secondary: #cfcfcf;
   --card: #111111;
   --border: #222222;
-  --hover-glow: rgba(21,58,113,.1);
+  --hover-glow: rgba(0, 86, 179, 0.2);
   --success: #10b981;
-  --shadow-sm: 0 2px 10px rgba(0,0,0,.35);
-  --shadow-md: 0 6px 22px rgba(0,0,0,.45);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,.6);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+  background: #000000;
+  color: var(--text-primary);
 `;
 
 /* ====== HERO SLIDER (changeable top photos) ====== */
@@ -93,14 +99,14 @@ const HeroWrap = styled.section`
   position: relative;
   height: min(78vh, 760px);
   min-height: 440px;
-  color: var(--text-primary);
+  color: #ffffff;
   border-bottom: 1px solid var(--border);
 `;
 
 const HeroSlide = styled.div`
   width: 100%; height: 100%;
   background:
-    linear-gradient(rgba(0,0,0,.82), rgba(0,0,0,.78)),
+    linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
     url(${({ $img }) => `"${$img}"`}) center/cover no-repeat;
   position: relative;
 `;
@@ -112,57 +118,128 @@ const HeroContent = styled.div`
 
 const HeroInner = styled.div`
   max-width: 900px;
-  padding: 1.25rem;
-  background: rgba(0,0,0,.38);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 14px 40px rgba(0,0,0,.45);
-
+  padding: 2rem;
+  
   h1 {
-    font-size: clamp(32px, 5vw, 56px);
-    margin-bottom: 0.9rem; line-height: 1.1;
+    font-size: clamp(32px, 5vw, 64px);
+    margin-bottom: 1rem; line-height: 1.1;
     text-shadow: 0 2px 8px rgba(0,0,0,.6);
-    letter-spacing: .2px;
+    letter-spacing: .5px;
+    font-weight: 800;
+    color: #ffffff;
   }
   p {
-    font-size: clamp(16px, 2.3vw, 20px);
-    margin-bottom: 1.2rem; color: #e9e9e9;
+    font-size: clamp(16px, 2.3vw, 22px);
+    margin-bottom: 2rem; color: #fff;
     text-shadow: 0 1px 4px rgba(0,0,0,.6);
+    font-weight: 500;
   }
 
   .cta-group{
     display:flex;
-    flex-direction:column;
-    gap:.75rem;
+    gap: 1rem;
     align-items:center;
     justify-content:center;
+    flex-wrap: wrap;
   }
 `;
 
 const PrimaryButton = styled(Link)`
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--secondary-color); color: #000;
-  padding: .9rem 1.6rem; border-radius: 10px; font-weight: 800;
-  letter-spacing: .2px; transition: all .25s ease;
+  padding: 1rem 2rem; border-radius: 50px; font-weight: 800;
+  letter-spacing: .5px; transition: all .25s ease;
   box-shadow: 0 8px 24px rgba(245,158,11,.45);
-  border: 1px solid rgba(255,255,255,.08);
+  border: none;
+  font-size: 1.1rem;
   &:hover { background: #e68a00; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(245,158,11,.6); }
 `;
 
 const CallButton = styled.a`
   display: inline-flex; align-items: center; gap: 8px;
-  background: var(--primary-color); color: #fff;
-  padding: .75rem 1.25rem; border-radius: 10px; font-weight: 900;
-  letter-spacing: .2px; transition: all .25s ease;
-  box-shadow: 0 8px 20px rgba(21,58,113,.35);
-  border: 1px solid rgba(255,255,255,.08);
+  background: white; color: var(--primary-color);
+  padding: 1rem 2rem; border-radius: 50px; font-weight: 800;
+  letter-spacing: .5px; transition: all .25s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+  border: none;
   text-decoration: none;
+  font-size: 1.1rem;
   &:hover{
-    background: var(--primary-dark);
+    background: #f0f0f0;
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(21,58,113,.45);
+    box-shadow: 0 12px 30px rgba(0,0,0,.3);
+  }
+`;
+
+/* ====== QUICK ACTIONS BAR ====== */
+const QuickActionsBar = styled.div`
+  background: #111111;
+  padding: 2rem;
+  position: relative;
+  z-index: 10;
+  margin-top: -60px;
+  width: 90%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border: 1px solid #222222;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    margin-top: -30px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+`;
+
+const QuickActionItem = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    color: var(--primary-color);
+  }
+
+  .icon-circle {
+    width: 64px;
+    height: 64px;
+    background: rgba(0, 86, 179, 0.15);
+    color: #0056b3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+  }
+
+  &:hover .icon-circle {
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.5);
+  }
+
+  span {
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 `;
 
@@ -186,7 +263,7 @@ const SectionHeader = styled.div`
 const ServicesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
+  gap: 1.5rem;
 `;
 
 const ServiceCard = styled.div`
@@ -196,11 +273,11 @@ const ServiceCard = styled.div`
   box-shadow: var(--shadow-md);
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   &:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--secondary-color); }
-  .service-image { height: 180px; display: grid; place-items: center; font-size: 3rem; color: #fff; border-bottom: 1px solid var(--border); }
+  .service-image { height: 200px; display: grid; place-items: center; font-size: 4rem; color: #fff; border-bottom: 1px solid var(--border); }
   .service-content {
-    padding: 1.25rem 1.25rem 1.5rem;
-    h3 { color: var(--secondary-color); margin-bottom: .4rem; }
-    p { color: var(--text-secondary); margin-bottom: 1rem; }
+    padding: 1.5rem;
+    h3 { color: var(--secondary-color); margin-bottom: .5rem; font-size: 1.5rem; }
+    p { color: var(--text-secondary); margin-bottom: 1.5rem; }
   }
 `;
 
@@ -287,24 +364,6 @@ const PlanButton = styled.a`
 `;
 
 /* Testimonials / CTA Section */
-const AnnouncementSection = styled.section`
-  padding: 3rem 1rem;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  color: #ffffff;
-`;
-
-const AnnouncementContent = styled.div`
-  text-align: center; max-width: 700px; margin: 0 auto;
-`;
-
-const AnnouncementTitle = styled.h2`
-  font-size: 2rem; font-weight: 900; margin-bottom: .75rem; color: #ffffff;
-`;
-
-const AnnouncementText = styled.p`
-  font-size: 1.125rem; opacity: .95; margin-bottom: 1.25rem; color: #ffffff;
-`;
-
 const CTAButton = styled(Link)`
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--secondary-color); color: #000;
@@ -360,25 +419,40 @@ const Home = () => {
   /* ======= Change hero photos here (add/remove URLs) ======= */
   const heroSlides = [
     {
-      image:
-        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=3840&q=100",
-      title: "Welcome to SPEEDLINK",
-      subtitle: "Ultra-fast broadband and crystal-clear digital TV",
+      image: "/assets/slider/slide1.png",
+      title: "Ultra-Fast Fiber Broadband",
+      subtitle: "Experience lightning speed internet with our advanced fiber optic network",
       cta: "View Plans",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1504386106331-3e4e71712b38?ixlib=rb-4.0.3&auto=format&fit=crop&w=3840&q=100",
-      title: "Streaming Without Limits",
-      subtitle: "Buffer-free movies, shows, and sports in HD/4K",
-      cta: "Explore Plans",
+      image: "/assets/slider/slide2.png",
+      title: "Entertainment for Everyone",
+      subtitle: "Enjoy 500+ channels and 4K content with your family",
+      cta: "Explore TV",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=3840&q=100",
-      title: "Gaming-Grade Speeds",
-      subtitle: "Low latency plans for competitive gaming",
-      cta: "See Offers",
+      image: "/assets/slider/slide3.png",
+      title: "Lag-Free Gaming",
+      subtitle: "Dominate the game with low latency and high-speed connection",
+      cta: "Gaming Plans",
+    },
+    {
+      image: "/assets/slider/slide4.png",
+      title: "Seamless Work from Home",
+      subtitle: "Reliable connectivity for all your video calls and large file transfers",
+      cta: "Business Plans",
+    },
+    {
+      image: "/assets/slider/slide5.png",
+      title: "Next-Gen Digital TV",
+      subtitle: "Upgrade to our smart set-top box for a premium viewing experience",
+      cta: "Get Box",
+    },
+    {
+      image: "/assets/slider/slide6.png",
+      title: "Connected Everywhere",
+      subtitle: "Stay connected with our robust network infrastructure",
+      cta: "Check Coverage",
     },
   ];
 
@@ -420,6 +494,26 @@ const Home = () => {
           ))}
         </Swiper>
       </HeroWrap>
+
+      {/* ===== QUICK ACTIONS BAR ===== */}
+      <QuickActionsBar>
+        <QuickActionItem to="/enquire">
+          <div className="icon-circle"><FaCreditCard /></div>
+          <span>Quick Pay</span>
+        </QuickActionItem>
+        <QuickActionItem to="/buy-connection-form">
+          <div className="icon-circle"><FaPlus /></div>
+          <span>New Connection</span>
+        </QuickActionItem>
+        <QuickActionItem to="/broadband">
+          <div className="icon-circle"><FaArrowUp /></div>
+          <span>Upgrade Plan</span>
+        </QuickActionItem>
+        <QuickActionItem to="/support">
+          <div className="icon-circle"><FaSearch /></div>
+          <span>Track Order</span>
+        </QuickActionItem>
+      </QuickActionsBar>
 
       {/* Services */}
       <Section>
@@ -678,9 +772,9 @@ const Home = () => {
               <CTAButton href="tel:+916295932396">
                 <FaPhone /> Call Us Now
               </CTAButton>
-              <CTAButton 
-                href="https://wa.me/916295932396" 
-                target="_blank" 
+              <CTAButton
+                href="https://wa.me/916295932396"
+                target="_blank"
                 rel="noopener noreferrer"
                 style={{ background: '#25D366' }}
               >
@@ -711,15 +805,15 @@ const Home = () => {
         transition: 'all 0.3s ease',
         textDecoration: 'none'
       }}
-      onMouseEnter={(e) => {
-        e.target.style.transform = 'scale(1.1)';
-        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
-      }}
-      onMouseLeave={(e) => {
-        e.target.style.transform = 'scale(1)';
-        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
-      }}
-      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+        }}
+        onClick={() => window.open('https://wa.me/916295932396', '_blank')}
       >
         <FaWhatsapp />
       </div>

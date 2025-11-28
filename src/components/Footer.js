@@ -4,42 +4,54 @@ import { FaWifi, FaTv, FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitte
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-  color: white;
-  padding: 3rem 0 1rem;
+  background: #02050c;
+  color: #cfcfcf;
+  padding: 4rem 0 1rem;
   position: relative;
+  border-top: 1px solid #1a1a1a;
 `;
 
 const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 15px;
 `;
 
 const FooterGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 `;
 
 const FooterSection = styled.div`
   h3 {
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   
-  p, a {
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-    margin-bottom: 0.5rem;
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+  }
+  
+  a {
+    color: #9ca3af;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
     
     &:hover {
       color: var(--secondary-color);
+      padding-left: 4px;
     }
   }
 `;
@@ -47,17 +59,18 @@ const FooterSection = styled.div`
 const SocialLinks = styled.div`
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   
   a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     transition: all 0.3s ease;
+    color: #fff;
     
     &:hover {
       background: var(--secondary-color);
@@ -70,7 +83,25 @@ const FooterBottom = styled.div`
   text-align: center;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
+  color: #6b7280;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const LegalLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+
+  a {
+    color: #6b7280;
+    text-decoration: none;
+    &:hover { color: var(--secondary-color); }
+  }
 `;
 
 const Footer = () => {
@@ -79,77 +110,57 @@ const Footer = () => {
       <FooterContent>
         <FooterGrid>
           <FooterSection>
-            <h3>SPEEDLINK</h3>
-            <p>Your trusted partner for high-speed broadband and digital cable TV services. Experience seamless connectivity and entertainment.</p>
+            <h3>Services</h3>
+            <ul>
+              <li><Link to="/broadband">High Speed Broadband</Link></li>
+              <li><Link to="/cable-tv">Digital Cable TV</Link></li>
+              <li><Link to="/ott">OTT Platforms</Link></li>
+            </ul>
+          </FooterSection>
+
+          <FooterSection>
+            <h3>Quick Links</h3>
+            <ul>
+              <li><Link to="/buy-connection-form">New Connection</Link></li>
+              <li><Link to="/broadband">Upgrade Plan</Link></li>
+              <li><Link to="/support">Track Order</Link></li>
+            </ul>
+          </FooterSection>
+
+          <FooterSection>
+            <h3>Corporate</h3>
+            <ul>
+              <li><Link to="/">About Us</Link></li>
+            </ul>
+          </FooterSection>
+
+          <FooterSection>
+            <h3>Support</h3>
+            <ul>
+              <li><Link to="/support">Contact Us</Link></li>
+              <li><Link to="/support">FAQs</Link></li>
+              <li><Link to="/support">Locate Us</Link></li>
+              <li><Link to="/support">Feedback</Link></li>
+            </ul>
             <SocialLinks>
               <a href="#" aria-label="Facebook"><FaFacebook /></a>
               <a href="#" aria-label="Twitter"><FaTwitter /></a>
               <a href="#" aria-label="Instagram"><FaInstagram /></a>
               <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
+              <a href="#" aria-label="YouTube"><FaTv /></a>
             </SocialLinks>
-          </FooterSection>
-
-          <FooterSection>
-            <h3>Services</h3>
-            <Link to="/broadband">High-Speed Broadband</Link>
-            <Link to="/cable-tv">Digital Cable TV</Link>
-            <Link to="/support">24/7 Support</Link>
-            <Link to="/customer-portal">Customer Portal</Link>
-          </FooterSection>
-
-          <FooterSection>
-            <h3>Contact Info</h3>
-            <p><FaPhone /> +91 62959 32396</p>
-            <p><FaEnvelope /> support@speedlink.com</p>
-            <p><FaMapMarkerAlt /> Katwa, West Bengal</p>
-          </FooterSection>
-
-          <FooterSection>
-            <h3>Quick Links</h3>
-            <Link to="/">Home</Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/support">Support</Link>
-            <Link to="/contact">Contact</Link>
           </FooterSection>
         </FooterGrid>
 
         <FooterBottom>
-          <p>&copy; 2024 SPEEDLINK. All rights reserved. | Designed with ❤️ for our customers</p>
+          <LegalLinks>
+            <Link to="/terms">Legal Disclaimer</Link>
+            <Link to="/terms">Terms of usage</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+          </LegalLinks>
+          <p>&copy; {new Date().getFullYear()} SPEEDLINK. All Rights Reserved.</p>
         </FooterBottom>
       </FooterContent>
-
-      {/* Floating WhatsApp Button */}
-      <div style={{
-        position: 'fixed',
-        bottom: '2rem',
-        right: '2rem',
-        zIndex: 1000,
-        background: '#25D366',
-        color: 'white',
-        borderRadius: '50%',
-        width: '60px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '1.5rem',
-        boxShadow: '0 8px 25px rgba(37, 211, 102, 0.4)',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        textDecoration: 'none'
-      }}
-      onMouseEnter={(e) => {
-        e.target.style.transform = 'scale(1.1)';
-        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
-      }}
-      onMouseLeave={(e) => {
-        e.target.style.transform = 'scale(1)';
-        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
-      }}
-      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
-      >
-        <FaWhatsapp />
-      </div>
     </FooterContainer>
   );
 };

@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { FaBars, FaTimes, FaPhone, FaChevronDown, FaWifi, FaTv, FaWhatsapp } from "react-icons/fa";
+import { FaBars, FaTimes, FaPhone, FaChevronDown, FaWifi, FaTv, FaWhatsapp, FaUser, FaChartLine, FaMobileAlt, FaCreditCard } from "react-icons/fa";
 import styled, { createGlobalStyle } from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import "typeface-poppins";
@@ -10,23 +10,65 @@ import SearchBar from "./SearchBar";
 /* ---------- Global Theme (SPEEDLINK-style) ---------- */
 const GlobalTheme = createGlobalStyle`
   :root{
-    --primary-color: #153a71;       /* SPEEDLINK blue */
-    --primary-dark: #10294c;        /* darker blue */
-    --secondary-color: #f59e0b;     /* SPEEDLINK orange */
-    --bg-dark: #000000;             /* page/nav black */
-    --bg-card: #111111;             /* card/drops */
-    --text-primary: #ffffff;        /* white */
-    --text-secondary: #cfcfcf;      /* gray text */
-    --border: #222222;              /* borders */
-    --hover-glow: rgba(21,58,113,.1);
-    --shadow-sm: 0 2px 10px rgba(0,0,0,.35);
-    --shadow-md: 0 6px 22px rgba(0,0,0,.45);
-    --shadow-lg: 0 12px 40px rgba(0,0,0,.6);
+    --primary-color: #0056b3;
+    --primary-dark: #004494;
+    --secondary-color: #ff9900;
+    --bg-dark: #02050c;
+    --bg-light: #000000;
+    --bg-card: #111111;
+    --text-primary: #ffffff;
+    --text-secondary: #cfcfcf;
+    --border: #222222;
+    --hover-glow: rgba(0, 86, 179, 0.2);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
   }
   body { 
     color: var(--text-primary); 
-    background: var(--bg-primary);
+    background: #000000;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+`;
+
+/* ----------------------------- Top Bar Styles ----------------------------- */
+const TopBar = styled.div`
+  background: var(--primary-dark);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const TopBarContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+`;
+
+const TopBarLink = styled(Link)`
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s ease;
+  font-weight: 500;
+
+  &:hover {
+    color: var(--secondary-color);
+  }
+  
+  &.active {
+    color: var(--secondary-color);
+    font-weight: 700;
   }
 `;
 
@@ -52,7 +94,7 @@ const NavMain = styled.div`
   display: flex; 
   justify-content: space-between; 
   align-items: center;
-  height: 75px; 
+  height: 80px; 
   padding: 10px 0;
 `;
 
@@ -76,8 +118,8 @@ const NavCenter = styled.div`
   align-items: center;
   gap: 1rem;
   flex: 1;
-  justify-content: center;
-  margin: 0 2rem;
+  justify-content: flex-end;
+  margin-right: 2rem;
 
   @media (max-width: 1200px) {
     display: none;
@@ -113,17 +155,16 @@ const Hamburger = styled.button`
 const NavMenu = styled(motion.nav)`
   display: flex; 
   align-items: center; 
-  margin-left: auto; 
   gap: .25rem;
 
   @media (max-width: 992px) {
     position: fixed; 
     left: ${({ $open }) => ($open ? 0 : "-100%")}; 
-    top: 75px;
+    top: 115px; /* Adjust for TopBar + Nav height */
     flex-direction: column; 
     background: var(--bg-dark);
     width: 100%; 
-    height: calc(100vh - 75px);
+    height: calc(100vh - 115px);
     padding: 1rem; 
     transition: left .3s ease; 
     overflow-y: auto; 
@@ -199,7 +240,7 @@ const DropdownMenu = styled(motion.div)`
   background: var(--bg-dark);
   border: 1px solid var(--border);
   border-radius: 8px;
-  min-width: 200px;
+  min-width: 220px;
   box-shadow: var(--shadow-lg);
   z-index: 1000;
   overflow: hidden;
@@ -309,7 +350,7 @@ const Navbar = () => {
     setOpenDropdown(null);
   };
 
-  // SPEEDLINK-style navigation structure
+  // GTPL-style navigation structure
   const navItems = [
     {
       name: 'Home',
@@ -318,30 +359,27 @@ const Navbar = () => {
     },
     {
       name: 'Cable TV',
-      type: 'dropdown',
-      items: [
-        { name: 'Digital Cable TV', link: '/cable-tv', icon: <FaTv /> },
-        { name: 'Channel Packs', link: '/cable-tv#packs', icon: <FaTv /> },
-        { name: 'HD Channels', link: '/cable-tv#hd', icon: <FaTv /> },
-        { name: 'Regional Content', link: '/cable-tv#regional', icon: <FaTv /> }
-      ]
+      link: '/cable-tv',
+      type: 'link'
     },
     {
       name: 'Broadband',
-      type: 'dropdown',
-      items: [
-        { name: 'High-Speed Plans', link: '/broadband', icon: <FaWifi /> },
-        { name: 'Fiber Internet', link: '/broadband#fiber', icon: <FaWifi /> },
-        { name: 'Business Plans', link: '/broadband#business', icon: <FaWifi /> },
-        { name: 'Coverage Check', link: '/pincodes', icon: <FaWifi /> }
-      ]
+      link: '/broadband',
+      type: 'link'
+    },
+    {
+      name: 'OTT',
+      link: '/ott',
+      type: 'link'
     }
   ];
 
   return (
     <>
       <GlobalTheme />
-      <Nav 
+
+
+      <Nav
         className={isScrolled ? "scrolled" : ""}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -352,16 +390,52 @@ const Navbar = () => {
             <Logo to="/">SPEEDLINK</Logo>
 
             <NavCenter>
-              <SearchBar theme="dark" onSearch={handleSearch} />
+              <NavMenu>
+                {navItems.map((item, index) => (
+                  <div key={index}>
+                    {item.type === 'link' ? (
+                      <NavLinkItem to={item.link} className={activeClass}>
+                        {item.name}
+                      </NavLinkItem>
+                    ) : (
+                      <NavItem onClick={() => toggleDropdown(item.name)}>
+                        {item.name}
+                        <DropdownIcon className={openDropdown === item.name ? 'open' : ''}>
+                          <FaChevronDown />
+                        </DropdownIcon>
+
+                        <AnimatePresence>
+                          {openDropdown === item.name && (
+                            <DropdownMenu
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              {item.items.map((subItem, subIndex) => (
+                                <DropdownItem key={subIndex} to={subItem.link} onClick={closeDropdown}>
+                                  {subItem.icon}
+                                  {subItem.name}
+                                </DropdownItem>
+                              ))}
+                            </DropdownMenu>
+                          )}
+                        </AnimatePresence>
+                      </NavItem>
+                    )}
+                  </div>
+                ))}
+              </NavMenu>
+
             </NavCenter>
 
             <NavRight>
               <Cta to="/enquire">
-                <FaPhone /> Call Now
+                <FaPhone /> Pay / Recharge
               </Cta>
 
-              <Hamburger 
-                aria-label="Toggle menu" 
+              <Hamburger
+                aria-label="Toggle menu"
                 onClick={() => setMenuOpen(o => !o)}
               >
                 {menuOpen ? <FaTimes /> : <FaBars />}
@@ -373,18 +447,16 @@ const Navbar = () => {
 
       <AnimatePresence>
         {menuOpen && (
-          <NavMenu 
-            $open={menuOpen} 
+          <NavMenu
+            $open={menuOpen}
             aria-label="Main navigation"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.3 }}
           >
-            <MobileSearchContainer>
-              <SearchBar theme="dark" onSearch={handleSearch} />
-            </MobileSearchContainer>
-            
+
+
             {navItems.map((item, index) => (
               <div key={index}>
                 {item.type === 'link' ? (
@@ -397,7 +469,7 @@ const Navbar = () => {
                     <DropdownIcon className={openDropdown === item.name ? 'open' : ''}>
                       <FaChevronDown />
                     </DropdownIcon>
-                    
+
                     <AnimatePresence>
                       {openDropdown === item.name && (
                         <DropdownMenu
@@ -443,15 +515,15 @@ const Navbar = () => {
         transition: 'all 0.3s ease',
         textDecoration: 'none'
       }}
-      onMouseEnter={(e) => {
-        e.target.style.transform = 'scale(1.1)';
-        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
-      }}
-      onMouseLeave={(e) => {
-        e.target.style.transform = 'scale(1)';
-        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
-      }}
-      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+        }}
+        onClick={() => window.open('https://wa.me/916295932396', '_blank')}
       >
         <FaWhatsapp />
       </div>

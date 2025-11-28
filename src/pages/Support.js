@@ -9,24 +9,23 @@ import styled from 'styled-components';
 
 /* ====================== THEME WRAPPER ====================== */
 const Page = styled.div`
-  /* SPEEDLINK dark + blue palette (fallbacks if not injected globally) */
-  --primary-color: var(--primary-color, #ff6600);
-  --primary-dark: var(--primary-dark, #e65c00);
-  --text-primary: var(--text-primary, #ffffff);
-  --text-secondary: var(--text-secondary, #cfcfcf);
-  --accent-color: var(--accent-color, #ff6600);
+  --primary-color: #0056b3;
+  --primary-dark: #004494;
+  --text-primary: #ffffff;
+  --text-secondary: #cfcfcf;
+  --accent-color: #ff9900;
 
-  --page-bg: #0b0f14;
-  --card: #111315;
-  --card-2: #12161a;
-  --border-color: #22272b;
+  --page-bg: #000000;
+  --card: #111111;
+  --card-2: #0a0a0a;
+  --border-color: #222222;
 
   --radius-md: 10px;
   --radius-lg: 16px;
 
-  --shadow-sm: 0 2px 10px rgba(0,0,0,.35);
-  --shadow-md: 0 6px 22px rgba(0,0,0,.45);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,.6);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
 
   background: var(--page-bg);
   color: var(--text-primary);
@@ -42,9 +41,9 @@ const Container = styled.div`
 const HeroSection = styled.section`
   position: relative;
   background:
-    radial-gradient(1200px 500px at 50% -20%, rgba(255,102,0,.12), transparent 60%),
-    linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.85));
-  color: var(--text-primary);
+    radial-gradient(1200px 500px at 50% -20%, rgba(21, 58, 113, 0.2), transparent 60%),
+    linear-gradient(180deg, #153a71, #10294c);
+  color: #ffffff;
   padding: 6rem 1rem 4rem;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
@@ -62,7 +61,7 @@ const HeroSubtitle = styled.p`
   opacity: .95;
   max-width: 760px;
   margin: 0 auto;
-  color: var(--text-secondary);
+  color: #e5e7eb;
 `;
 
 /* ======================== SUPPORT CARDS ======================== */
@@ -160,7 +159,7 @@ const ChatbotBody = styled.div`
   min-height: 360px;
   max-height: 480px;
   overflow-y: auto;
-  background: #0f1216;
+  background: #f4f6f9;
 `;
 
 const ChatMessage = styled.div`
@@ -187,7 +186,7 @@ const ChatInput = styled.div`
 const Input = styled.input`
   flex: 1;
   padding: .8rem .9rem;
-  background: #0f1216;
+  background: #ffffff;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -196,7 +195,7 @@ const Input = styled.input`
 
   &:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(255,102,0,.15);
+    box-shadow: 0 0 0 3px rgba(21, 58, 113, 0.15);
   }
 `;
 
@@ -285,7 +284,7 @@ const SearchSection = styled.div`
 const SearchInput = styled.input`
   width: 100%;
   padding: 1rem 1rem 1rem 3rem;
-  background: #0f1216;
+  background: #ffffff;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -294,7 +293,7 @@ const SearchInput = styled.input`
   &:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(255,102,0,.15);
+    box-shadow: 0 0 0 3px rgba(21, 58, 113, 0.15);
   }
 `;
 
@@ -320,8 +319,11 @@ const FAQQuestion = styled.div`
   cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   font-weight: 900; color: var(--text-primary);
-  transition: background-color .2s ease;
-  &:hover { background: #0f1216; }
+  transition: background-color .2s ease, color .2s ease;
+  &:hover { 
+    background: rgba(255, 153, 0, 0.1); 
+    color: var(--accent-color);
+  }
 `;
 
 const FAQAnswer = styled.div`
@@ -341,22 +343,38 @@ const Support = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const faqs = [
-    { question: "How do I check my broadband speed?",
-      answer: "Visit our Speed Test page. For accurate results, connect via LAN, close downloads/streams, and pause other devices." },
-    { question: "What should I do if my internet is slow?",
-      answer: "Restart the router, check cables, disconnect heavy-usage devices, then contact 24/7 support if needed." },
-    { question: "How can I upgrade my plan?",
-      answer: "Upgrade via your customer portal or call support. Changes usually activate within 24 hours." },
-    { question: "What payment methods do you accept?",
-      answer: "Cards, UPI, net banking, and wallets (Paytm, PhonePe, GPay). Payments also available in the SPEEDLINK app." },
-    { question: "How do I report a service outage?",
-      answer: "Report via the app/portal or call our hotline. We’ll post real-time restoration updates." },
-    { question: "Can I use my own router?",
-      answer: "Yes. For best performance, we recommend our pre-configured router. BYO routers are supported." },
-    { question: "What is the installation process?",
-      answer: "Technician visit, ONT/router setup, and testing. Typical duration: 1–2 hours." },
-    { question: "How do I cancel my subscription?",
-      answer: "Cancel in the portal or by calling support. Early termination fees may apply per plan terms." }
+    {
+      question: "How do I check my broadband speed?",
+      answer: "Visit our Speed Test page. For accurate results, connect via LAN, close downloads/streams, and pause other devices."
+    },
+    {
+      question: "What should I do if my internet is slow?",
+      answer: "Restart the router, check cables, disconnect heavy-usage devices, then contact 24/7 support if needed."
+    },
+    {
+      question: "How can I upgrade my plan?",
+      answer: "Upgrade via your customer portal or call support. Changes usually activate within 24 hours."
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer: "Cards, UPI, net banking, and wallets (Paytm, PhonePe, GPay). Payments also available in the SPEEDLINK app."
+    },
+    {
+      question: "How do I report a service outage?",
+      answer: "Report via the app/portal or call our hotline. We’ll post real-time restoration updates."
+    },
+    {
+      question: "Can I use my own router?",
+      answer: "Yes. For best performance, we recommend our pre-configured router. BYO routers are supported."
+    },
+    {
+      question: "What is the installation process?",
+      answer: "Technician visit, ONT/router setup, and testing. Typical duration: 1–2 hours."
+    },
+    {
+      question: "How do I cancel my subscription?",
+      answer: "Cancel in the portal or by calling support. Early termination fees may apply per plan terms."
+    }
   ];
 
   const filteredFAQs = faqs.filter(f =>
@@ -550,15 +568,15 @@ const Support = () => {
         transition: 'all 0.3s ease',
         textDecoration: 'none'
       }}
-      onMouseEnter={(e) => {
-        e.target.style.transform = 'scale(1.1)';
-        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
-      }}
-      onMouseLeave={(e) => {
-        e.target.style.transform = 'scale(1)';
-        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
-      }}
-      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+        }}
+        onClick={() => window.open('https://wa.me/916295932396', '_blank')}
       >
         <FaWhatsapp />
       </div>

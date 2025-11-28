@@ -7,23 +7,23 @@ import styled from 'styled-components';
 
 /* ====================== THEME WRAPPER ====================== */
 const Page = styled.div`
-  --primary-color: var(--primary-color, #ff6600);
-  --primary-dark: var(--primary-dark, #e65c00);
-  --text-primary: var(--text-primary, #ffffff);
-  --text-secondary: var(--text-secondary, #cfcfcf);
-  --accent-color: var(--accent-color, #ff6600);
+  --primary-color: #0056b3;
+  --primary-dark: #004494;
+  --text-primary: #ffffff;
+  --text-secondary: #cfcfcf;
+  --accent-color: #ff9900;
 
-  --page-bg: #0b0f14;
-  --card: #111315;
-  --card-2: #12161a;
-  --border-color: #22272b;
+  --page-bg: #000000;
+  --card: #111111;
+  --card-2: #0a0a0a;
+  --border-color: #222222;
 
   --radius-md: 10px;
   --radius-lg: 16px;
 
-  --shadow-sm: 0 2px 10px rgba(0,0,0,.35);
-  --shadow-md: 0 6px 22px rgba(0,0,0,.45);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,.6);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
 
   background: var(--page-bg);
   color: var(--text-primary);
@@ -33,8 +33,8 @@ const Page = styled.div`
 const HeroSection = styled.section`
   position: relative;
   background:
-    radial-gradient(1200px 500px at 50% -20%, rgba(255,102,0,.12), transparent 60%),
-    linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.85));
+    radial-gradient(1200px 500px at 50% -20%, rgba(21, 58, 113, 0.2), transparent 60%),
+    linear-gradient(180deg, #153a71, #10294c);
   padding: 6rem 1rem 4rem;
   text-align: center;
   border-bottom: 1px solid var(--border-color);
@@ -50,13 +50,13 @@ const HeroTitle = styled.h1`
   font-weight: 900;
   letter-spacing: .2px;
   margin: 0 0 0.75rem;
-  color: var(--text-primary);
+  color: #ffffff;
   text-shadow: 0 2px 10px rgba(0,0,0,.5);
 `;
 
 const HeroSubtitle = styled.p`
   font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: #e5e7eb;
   max-width: 760px;
   margin: 0 auto;
 `;
@@ -381,9 +381,9 @@ const CableTV = () => {
 
   const features = [
     { icon: <FaVideo />, title: 'HD & 4K Quality', description: 'Crystal clear viewing for movies, sports, and shows.' },
-    { icon: <FaTv />,    title: '500+ Channels',   description: 'Regional + international lineups for every taste.' },
-    { icon: <FaStar />,  title: 'Premium Content', description: 'Add premium genres any time — fully flexible.' },
-    { icon: <FaCheck />, title: 'Quick Setup',     description: 'Fast activation in serviceable areas.' }
+    { icon: <FaTv />, title: '500+ Channels', description: 'Regional + international lineups for every taste.' },
+    { icon: <FaStar />, title: 'Premium Content', description: 'Add premium genres any time — fully flexible.' },
+    { icon: <FaCheck />, title: 'Quick Setup', description: 'Fast activation in serviceable areas.' }
   ];
 
   const filters = [
@@ -402,9 +402,9 @@ const CableTV = () => {
 
   const renderQualityIcon = (quality) => {
     switch (quality) {
-      case 'HD':  return <FaVideo style={{ color: '#10b981' }} title="HD" />;
-      case '4K':  return <FaVideo style={{ color: '#8b5cf6' }} title="4K" />;
-      default:    return <FaCircle style={{ color: '#6b7280' }} title="SD" />;
+      case 'HD': return <FaVideo style={{ color: '#10b981' }} title="HD" />;
+      case '4K': return <FaVideo style={{ color: '#8b5cf6' }} title="4K" />;
+      default: return <FaCircle style={{ color: '#6b7280' }} title="SD" />;
     }
   };
 
@@ -537,15 +537,15 @@ const CableTV = () => {
         transition: 'all 0.3s ease',
         textDecoration: 'none'
       }}
-      onMouseEnter={(e) => {
-        e.target.style.transform = 'scale(1.1)';
-        e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
-      }}
-      onMouseLeave={(e) => {
-        e.target.style.transform = 'scale(1)';
-        e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
-      }}
-      onClick={() => window.open('https://wa.me/916295932396', '_blank')}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.6)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.boxShadow = '0 8px 25px rgba(37, 211, 102, 0.4)';
+        }}
+        onClick={() => window.open('https://wa.me/916295932396', '_blank')}
       >
         <FaWhatsapp />
       </div>
